@@ -2,7 +2,10 @@ package com.thoughtworks.estimate.dto.pmd;
 
 import com.thoughtworks.estimate.config.PMDConfig;
 import com.thoughtworks.estimate.dto.IReport;
+import com.thoughtworks.estimate.dto.summary.ViolationItem;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.Data;
 
 @Data
@@ -18,13 +21,23 @@ public class PMDReport implements IReport {
 
   @Override
   public double getScore() {
-    final double deductScore = Arrays.stream(files)
-        .flatMap(pmdFileReport -> Arrays.stream(pmdFileReport.getViolations()))
-        .map(Violations::getPriority)
-        .map(priority -> PMDConfig.getCodeSmellPriorityScoreMap().getOrDefault(priority, 0d))
-        .mapToDouble(Double::doubleValue)
+    final double deductScore = this.getViolationItems().stream()
+        .mapToDouble(ViolationItem::getDeductScore)
         .sum();
+
     return Math.max(0d, PMDConfig.getCodeSmellTotalScore() - deductScore);
+  }
+
+  @Override
+  public String getModuleName() {
+    return "Code Smell";
+  }
+
+  @Override
+  public List<ViolationItem> getViolationItems() {
+    return Arrays.stream(files)
+        .flatMap(pmdFileReport -> pmdFileReport.getViolationItems().stream())
+        .collect(Collectors.toList());
   }
 }
 

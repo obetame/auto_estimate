@@ -3,7 +3,7 @@ package com.thoughtworks.estimate.dto.pmd;
 import lombok.Data;
 
 @Data
-public class Violations {
+public class PMDViolation {
 
   private String endline;
 

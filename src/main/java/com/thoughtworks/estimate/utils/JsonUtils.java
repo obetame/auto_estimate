@@ -12,4 +12,9 @@ public class JsonUtils {
     Gson gson = new Gson();
     return gson.fromJson(json, type);
   }
+
+  public static String toJson(Object object) {
+    Gson gson = new Gson();
+    return gson.toJson(object);
+  }
 }

@@ -1,5 +1,6 @@
 package com.thoughtworks.estimate.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -23,5 +24,9 @@ public class FileUtils {
     }
 
     return contentBuilder.toString();
+  }
+
+  public static String getFileNameByPath(String filePath) {
+    return new File(filePath).getName();
   }
 }

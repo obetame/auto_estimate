@@ -19,7 +19,7 @@ public class PMDAnalyzer implements IAnalyzer {
 
   public PMDConfiguration getConfig(String path) {
     PMDConfiguration configuration = new PMDConfiguration();
-    configuration.setInputPaths(path + "/src/main");
+    configuration.setInputPaths(path);
     configuration.setRuleSets("src/main/resources/pmd-rulesets.xml");
     configuration.setReportFormat("json");
     configuration.setReportFile(getReportPath(path));
