@@ -18,22 +18,29 @@ public class Estimater {
   }
 
   public IndividualReport estimateByTrainee(Trainee trainee) {
-    final GitRepo repo = new GitRepo(trainee.getRepo());
-    final List<ModuleReport> moduleReports = analyzers.stream()
-        .map(iAnalyzer -> iAnalyzer.analysis(repo))
-        .map(iReport -> ModuleReport.builder()
-            .violationItems(iReport.getViolationItems())
-            .module(iReport.getModuleName())
-            .score(iReport.getScore())
-            .build()
-        ).collect(Collectors.toList());
+    try {
+      final GitRepo repo = new GitRepo(trainee.getRepo());
+      final List<ModuleReport> moduleReports = analyzers.stream()
+          .map(iAnalyzer -> iAnalyzer.analysis(repo))
+          .map(iReport -> ModuleReport.builder()
+              .violationItems(iReport.getViolationItems())
+              .module(iReport.getModuleName())
+              .score(iReport.getScore())
+              .build()
+          ).collect(Collectors.toList());
 
-    repo.delete();
-    return IndividualReport.builder()
-        .name(trainee.getName())
-        .moduleReports(moduleReports)
-        .score(moduleReports.stream().mapToDouble(ModuleReport::getScore).sum())
-        .build();
+      repo.delete();
+      return IndividualReport.builder()
+          .name(trainee.getName())
+          .moduleReports(moduleReports)
+          .score(moduleReports.stream().mapToDouble(ModuleReport::getScore).sum())
+          .build();
+    } catch (Throwable throwable) {
+      return IndividualReport.builder()
+          .name(trainee.getName())
+          .hasException(true)
+          .build();
+    }
   }
 
   public List<IndividualReport> batchEstimate(Trainee[] trainees) {

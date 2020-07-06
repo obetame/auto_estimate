@@ -11,4 +11,5 @@ public class IndividualReport {
   private String name;
   private Double score;
   private List<ModuleReport> moduleReports;
+  private boolean hasException;
 }
