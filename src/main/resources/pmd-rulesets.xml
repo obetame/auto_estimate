@@ -57,9 +57,11 @@
   </rule>
 
   <rule ref="category/java/codestyle.xml/MethodNamingConventions">
+    <priority>3</priority>
     <properties>
-      <property name="junit4TestPattern" value="[a-z][a-zA-Z0-9_]*" />
-      <property name="junit5TestPattern" value="[a-z][a-zA-Z0-9_]*" />
+      <property name="methodPattern" value="[a-z][a-zA-Z0-9]*|should\w*when\w*given\w*" />
+      <property name="junit4TestPattern" value="should\w*when\w*given\w*|set[u|U]p|tear[d|D]own" />
+      <property name="junit5TestPattern" value="should\w*when\w*given\w*|set[u|U]p|tear[d|D]own" />
     </properties>
   </rule>
 </ruleset>
