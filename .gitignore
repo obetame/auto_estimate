@@ -2,3 +2,5 @@ out/
 .idea
 .idea_modules/
 auto_estimate/
+.gradle/
+build/
