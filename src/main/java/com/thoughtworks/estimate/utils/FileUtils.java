@@ -29,4 +29,12 @@ public class FileUtils {
   public static String getFileNameByPath(String filePath) {
     return new File(filePath).getName();
   }
+
+  public static File create(String path) {
+    File dir = new File(path);
+    if (!dir.exists() || !dir.isDirectory()) {
+      dir.mkdirs();
+    }
+    return dir;
+  }
 }
