@@ -1,24 +1,19 @@
 #!/bin/bash
 
-function executeJacoco {
+function main {
     if [[ -f "./mvnw" ]]; then
         ./mvnw clean test
-        cp -R target/site/jacoco/ ./
+        cp target/site/jacoco/jacoco.csv ./jacoco.csv
     elif [[ -f "./gradlew" ]]; then
         ./gradlew clean test jacocoTestReport
-        cp -R build/reports/jacoco/test ./
+        cp build/reports/jacoco/test/jacocoTestReport.csv ./jacoco.csv
     elif [[ -f "pom.xml" ]]; then
         mvn clean test
-        cp -R target/site/jacoco/ ./
+        cp target/site/jacoco/jacoco.csv ./jacoco.csv
     elif [[ -f "build.gradle" ]]; then
         gradle clean test jacocoTestReport
-        cp -R build/reports/jacoco/test ./
+        cp build/reports/jacoco/test/jacocoTestReport.csv ./jacoco.csv
     fi
-}
-
-function main {
-    readCurrentWorkspacePath
-    executeJacoco
 }
 
 main

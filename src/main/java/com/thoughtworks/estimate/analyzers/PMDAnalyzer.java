@@ -19,7 +19,7 @@ public class PMDAnalyzer implements IAnalyzer {
 
   public PMDConfiguration getConfig(String path) {
     PMDConfiguration configuration = new PMDConfiguration();
-    configuration.setInputPaths(Paths.get(path,"/src").toString());
+    configuration.setInputPaths(Paths.get(path, "/src").toString());
     configuration.setRuleSets("src/main/resources/pmd-rulesets.xml");
     configuration.setReportFormat("json");
     configuration.setReportFile(getReportPath(path));
@@ -32,7 +32,7 @@ public class PMDAnalyzer implements IAnalyzer {
 
   private PMDReport getReport(String path) {
 
-    return JsonUtils.read(FileUtils.readJsonFile(this.getReportPath(path)), PMDReport.class);
+    return JsonUtils.read(FileUtils.readFile(this.getReportPath(path)), PMDReport.class);
   }
 
 }

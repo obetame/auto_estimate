@@ -14,7 +14,7 @@ public class FileUtils {
   private FileUtils() {
   }
 
-  public static String readJsonFile(String filePath) {
+  public static String readFile(String filePath) {
     StringBuilder contentBuilder = new StringBuilder();
 
     try (Stream<String> stream = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)) {

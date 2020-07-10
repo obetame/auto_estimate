@@ -11,7 +11,7 @@ public class Main {
 
   public static void main(String[] args) {
     final Trainee[] trainees = JsonUtils
-        .read(FileUtils.readJsonFile("src/main/resources/trainees.json"), Trainee[].class);
+        .read(FileUtils.readFile("src/main/resources/trainees.json"), Trainee[].class);
     Estimater estimater = new Estimater();
     System.out.println(JsonUtils.toJson(estimater.batchEstimate(trainees)));
   }

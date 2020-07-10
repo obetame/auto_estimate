@@ -7,9 +7,11 @@ import com.thoughtworks.estimate.utils.FileUtils;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.UUID;
+import lombok.Data;
 import lombok.SneakyThrows;
 import org.eclipse.jgit.api.Git;
 
+@Data
 public class GitRepo {
 
   private final File file;
