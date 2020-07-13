@@ -4,3 +4,4 @@ out/
 auto_estimate/
 .gradle/
 build/
+.gradle/checksums/
