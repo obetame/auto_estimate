@@ -1,6 +1,6 @@
 package com.thoughtworks.estimate.dto.pmd;
 
-import com.thoughtworks.estimate.config.PMDConfig;
+import com.thoughtworks.estimate.configuration.PMDConfiguration;
 import com.thoughtworks.estimate.dto.IReport;
 import com.thoughtworks.estimate.dto.summary.ViolationItem;
 import java.util.Arrays;
@@ -25,7 +25,7 @@ public class PMDReport implements IReport {
         .mapToDouble(ViolationItem::getDeductScore)
         .sum();
 
-    return Math.max(0d, PMDConfig.getCodeSmellTotalScore() - deductScore);
+    return Math.max(0d, PMDConfiguration.getCodeSmellTotalScore() - deductScore);
   }
 
   @Override

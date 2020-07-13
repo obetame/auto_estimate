@@ -1,11 +1,11 @@
-package com.thoughtworks.estimate.config;
+package com.thoughtworks.estimate.configuration;
 
-public class CommonConfig {
+public class CommonConfiguration {
 
   public static final String PROJECT_SOURCE_PATH = "/src";
   private static final String WORK_DIRECTORY = "auto_estimate";
 
-  private CommonConfig() {
+  private CommonConfiguration() {
   }
 
   public static String getWorkDirectory() {

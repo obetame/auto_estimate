@@ -1,6 +1,6 @@
 package com.thoughtworks.estimate.dto.pmd;
 
-import com.thoughtworks.estimate.config.PMDConfig;
+import com.thoughtworks.estimate.configuration.PMDConfiguration;
 import com.thoughtworks.estimate.dto.summary.ViolationItem;
 import com.thoughtworks.estimate.utils.FileUtils;
 import java.util.Arrays;
@@ -26,7 +26,8 @@ public class PMDFileReport {
   }
 
   private Double getDeductScore(PMDViolation pmdViolation) {
-    return PMDConfig.getCodeSmellPriorityScoreMap().getOrDefault(pmdViolation.getPriority(), 0d);
+    return PMDConfiguration
+        .getCodeSmellPriorityScoreMap().getOrDefault(pmdViolation.getPriority(), 0d);
   }
 
   private String getFormattedRule(PMDViolation pmdViolation) {

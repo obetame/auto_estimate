@@ -1,6 +1,6 @@
 package com.thoughtworks.estimate.dto.git;
 
-import com.thoughtworks.estimate.config.GitConfig;
+import com.thoughtworks.estimate.configuration.GitConfiguration;
 import com.thoughtworks.estimate.dto.summary.ViolationItem;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +20,7 @@ public class GitReportItem {
     return ViolationItem.builder()
         .position("Git Commit: " + commitMessage)
         .rule("Commit message is short")
-        .deductScore(GitConfig.getCommitMessageLengthDeductScore())
+        .deductScore(GitConfiguration.getCommitMessageLengthDeductScore())
         .build();
   }
 

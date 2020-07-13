@@ -1,6 +1,6 @@
 package com.thoughtworks.estimate.dto.test;
 
-import com.thoughtworks.estimate.config.TestCoverageConfig;
+import com.thoughtworks.estimate.configuration.TestCoverageConfiguration;
 import com.thoughtworks.estimate.dto.IReport;
 import com.thoughtworks.estimate.dto.summary.ViolationItem;
 import java.util.List;
@@ -16,7 +16,7 @@ public class TestCoverageReport implements IReport {
 
   @Override
   public double getScore() {
-    return Math.max(TestCoverageConfig.getTestCoverageTotalScore() - getDeductScore(), 0);
+    return Math.max(TestCoverageConfiguration.getTestCoverageTotalScore() - getDeductScore(), 0);
   }
 
   @Override
@@ -27,7 +27,7 @@ public class TestCoverageReport implements IReport {
   @Override
   public List<ViolationItem> getViolationItems() {
     return items.stream()
-        .filter(item -> item.getTestCoverage() < TestCoverageConfig.getTestCoverageBaseLine())
+        .filter(item -> item.getTestCoverage() < TestCoverageConfiguration.getTestCoverageBaseLine())
         .map(this::getViolationItem)
         .collect(Collectors.toList());
   }
@@ -38,8 +38,8 @@ public class TestCoverageReport implements IReport {
 
   private ViolationItem getViolationItem(TestCoverageReportItem item) {
     final double deductScore =
-        (1 - item.getTestCoverage() / TestCoverageConfig.getTestCoverageBaseLine()) *
-            TestCoverageConfig.getTestCoverageTotalScore() / items.size();
+        (1 - item.getTestCoverage() / TestCoverageConfiguration.getTestCoverageBaseLine()) *
+            TestCoverageConfiguration.getTestCoverageTotalScore() / items.size();
     return ViolationItem.builder()
         .position(item.getClassName())
         .rule("Insufficient test coverage")

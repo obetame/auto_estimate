@@ -1,6 +1,6 @@
-package com.thoughtworks.estimate.config;
+package com.thoughtworks.estimate.configuration;
 
-public class GitConfig {
+public class GitConfiguration {
 
   private static final double COMMIT_MESSAGE_MINIMUM_LENGTH = 8;
   private static final double COMMIT_MESSAGE_LENGTH_DEDUCT_SCORE = 0.5;
@@ -8,7 +8,7 @@ public class GitConfig {
   private static final double COMMIT_MINIMUM_QUANTITY = 10;
   private static final double COMMIT_QUANTITY_TOTAL_SCORE = 7;
 
-  private GitConfig() {
+  private GitConfiguration() {
   }
 
   public static double getCommitMessageMinimumLength() {

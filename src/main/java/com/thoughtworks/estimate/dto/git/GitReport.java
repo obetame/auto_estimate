@@ -1,6 +1,6 @@
 package com.thoughtworks.estimate.dto.git;
 
-import com.thoughtworks.estimate.config.GitConfig;
+import com.thoughtworks.estimate.configuration.GitConfiguration;
 import com.thoughtworks.estimate.dto.IReport;
 import com.thoughtworks.estimate.dto.summary.ViolationItem;
 import java.util.List;
@@ -16,8 +16,8 @@ public class GitReport implements IReport {
 
   @Override
   public double getScore() {
-    return Math.max(GitConfig.getCommitMessageTotalScore() - getCommitMessageDeductScore(), 0) +
-        Math.max(GitConfig.getCommitQuantityTotalScore() - getCommitQuantityDeductScore(), 0);
+    return Math.max(GitConfiguration.getCommitMessageTotalScore() - getCommitMessageDeductScore(), 0) +
+        Math.max(GitConfiguration.getCommitQuantityTotalScore() - getCommitQuantityDeductScore(), 0);
   }
 
   @Override
@@ -39,7 +39,7 @@ public class GitReport implements IReport {
   }
 
   private boolean isViolationOfCommitQuantity() {
-    return commitQuantity < GitConfig.getCommitMinimumQuantity();
+    return commitQuantity < GitConfiguration.getCommitMinimumQuantity();
   }
 
   private double getCommitMessageDeductScore() {
@@ -58,7 +58,7 @@ public class GitReport implements IReport {
   }
 
   private double getCommitQuantityDeductScore() {
-    return GitConfig.getCommitQuantityTotalScore() * Math
-        .max((1 - this.commitQuantity / GitConfig.getCommitMinimumQuantity()), 0);
+    return GitConfiguration.getCommitQuantityTotalScore() * Math
+        .max((1 - this.commitQuantity / GitConfiguration.getCommitMinimumQuantity()), 0);
   }
 }

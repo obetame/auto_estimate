@@ -1,9 +1,9 @@
-package com.thoughtworks.estimate.config;
+package com.thoughtworks.estimate.configuration;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class PMDConfig {
+public class PMDConfiguration {
 
   public static final String PMD_RULESETS_XML_PATH = "src/main/resources/pmd-rulesets.xml";
   private static final String JSON_REPORT_FILE_NAME = "pmd_report.json";
@@ -11,11 +11,11 @@ public class PMDConfig {
   private static final Map<String, Double> CODE_SMELL_PRIORITY_SCORE_MAP = new HashMap<>();
 
   static {
-    PMDConfig.CODE_SMELL_PRIORITY_SCORE_MAP.put("1", 3d);
-    PMDConfig.CODE_SMELL_PRIORITY_SCORE_MAP.put("2", 2d);
-    PMDConfig.CODE_SMELL_PRIORITY_SCORE_MAP.put("3", 0.5d);
-    PMDConfig.CODE_SMELL_PRIORITY_SCORE_MAP.put("4", 0.2d);
-    PMDConfig.CODE_SMELL_PRIORITY_SCORE_MAP.put("5", 0.1d);
+    PMDConfiguration.CODE_SMELL_PRIORITY_SCORE_MAP.put("1", 3d);
+    PMDConfiguration.CODE_SMELL_PRIORITY_SCORE_MAP.put("2", 2d);
+    PMDConfiguration.CODE_SMELL_PRIORITY_SCORE_MAP.put("3", 0.5d);
+    PMDConfiguration.CODE_SMELL_PRIORITY_SCORE_MAP.put("4", 0.2d);
+    PMDConfiguration.CODE_SMELL_PRIORITY_SCORE_MAP.put("5", 0.1d);
   }
 
   public static String getPmdRulesetsXmlPath() {

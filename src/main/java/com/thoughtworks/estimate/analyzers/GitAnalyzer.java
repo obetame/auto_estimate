@@ -1,7 +1,7 @@
 package com.thoughtworks.estimate.analyzers;
 
 import com.thoughtworks.estimate.GitRepo;
-import com.thoughtworks.estimate.config.GitConfig;
+import com.thoughtworks.estimate.configuration.GitConfiguration;
 import com.thoughtworks.estimate.dto.git.GitReport;
 import com.thoughtworks.estimate.dto.git.GitReportItem;
 import java.util.List;
@@ -19,7 +19,7 @@ public class GitAnalyzer implements IAnalyzer {
         .collect(Collectors.toList());
 
     final List<GitReportItem> gitReportItems = commitList.stream()
-        .filter(revCommit -> revCommit.getFullMessage().length() < GitConfig
+        .filter(revCommit -> revCommit.getFullMessage().length() < GitConfiguration
             .getCommitMessageMinimumLength())
         .map(GitReportItem::from)
         .collect(Collectors.toList());

@@ -22,6 +22,8 @@ dependencies {
 
     compile group: 'com.opencsv', name: 'opencsv', version: '5.2'
 
+    compile group: 'com.github.javaparser', name: 'javaparser-core', version: '3.16.1'
+
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
     testCompileOnly 'org.projectlombok:lombok:1.18.12'

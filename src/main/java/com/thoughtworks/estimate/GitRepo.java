@@ -2,7 +2,7 @@ package com.thoughtworks.estimate;
 
 import com.google.common.io.MoreFiles;
 import com.google.common.io.RecursiveDeleteOption;
-import com.thoughtworks.estimate.config.CommonConfig;
+import com.thoughtworks.estimate.configuration.CommonConfiguration;
 import com.thoughtworks.estimate.utils.FileUtils;
 import java.io.File;
 import java.nio.file.Paths;
@@ -18,7 +18,7 @@ public class GitRepo {
   private final Git git;
 
   public GitRepo(String gitRepo) {
-    final String path = Paths.get(CommonConfig.getWorkDirectory(), UUID.randomUUID().toString())
+    final String path = Paths.get(CommonConfiguration.getWorkDirectory(), UUID.randomUUID().toString())
         .toString();
     this.file = FileUtils.create(path);
     this.git = this.clone(gitRepo, this.file);

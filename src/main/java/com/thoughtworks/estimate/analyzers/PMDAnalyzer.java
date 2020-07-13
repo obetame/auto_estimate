@@ -1,14 +1,13 @@
 package com.thoughtworks.estimate.analyzers;
 
 import com.thoughtworks.estimate.GitRepo;
-import com.thoughtworks.estimate.config.CommonConfig;
-import com.thoughtworks.estimate.config.PMDConfig;
+import com.thoughtworks.estimate.configuration.CommonConfiguration;
+import com.thoughtworks.estimate.configuration.PMDConfiguration;
 import com.thoughtworks.estimate.dto.pmd.PMDReport;
 import com.thoughtworks.estimate.utils.FileUtils;
 import com.thoughtworks.estimate.utils.JsonUtils;
 import java.nio.file.Paths;
 import net.sourceforge.pmd.PMD;
-import net.sourceforge.pmd.PMDConfiguration;
 
 public class PMDAnalyzer implements IAnalyzer {
 
@@ -18,17 +17,17 @@ public class PMDAnalyzer implements IAnalyzer {
     return this.getReport(repo.getPath());
   }
 
-  public PMDConfiguration getConfig(String path) {
-    PMDConfiguration configuration = new PMDConfiguration();
-    configuration.setInputPaths(Paths.get(path, CommonConfig.getProjectSourcePath()).toString());
-    configuration.setRuleSets(PMDConfig.getPmdRulesetsXmlPath());
+  public net.sourceforge.pmd.PMDConfiguration getConfig(String path) {
+    net.sourceforge.pmd.PMDConfiguration configuration = new net.sourceforge.pmd.PMDConfiguration();
+    configuration.setInputPaths(Paths.get(path, CommonConfiguration.getProjectSourcePath()).toString());
+    configuration.setRuleSets(PMDConfiguration.getPmdRulesetsXmlPath());
     configuration.setReportFormat("json");
     configuration.setReportFile(getReportPath(path));
     return configuration;
   }
 
   private String getReportPath(String path) {
-    return Paths.get(path, PMDConfig.getJsonReportFileName()).toString();
+    return Paths.get(path, PMDConfiguration.getJsonReportFileName()).toString();
   }
 
   private PMDReport getReport(String path) {
