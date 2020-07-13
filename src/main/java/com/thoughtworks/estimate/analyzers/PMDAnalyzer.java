@@ -1,6 +1,7 @@
 package com.thoughtworks.estimate.analyzers;
 
 import com.thoughtworks.estimate.GitRepo;
+import com.thoughtworks.estimate.config.CommonConfig;
 import com.thoughtworks.estimate.config.PMDConfig;
 import com.thoughtworks.estimate.dto.pmd.PMDReport;
 import com.thoughtworks.estimate.utils.FileUtils;
@@ -19,8 +20,8 @@ public class PMDAnalyzer implements IAnalyzer {
 
   public PMDConfiguration getConfig(String path) {
     PMDConfiguration configuration = new PMDConfiguration();
-    configuration.setInputPaths(Paths.get(path, "/src").toString());
-    configuration.setRuleSets("src/main/resources/pmd-rulesets.xml");
+    configuration.setInputPaths(Paths.get(path, CommonConfig.getProjectSourcePath()).toString());
+    configuration.setRuleSets(PMDConfig.getPmdRulesetsXmlPath());
     configuration.setReportFormat("json");
     configuration.setReportFile(getReportPath(path));
     return configuration;
