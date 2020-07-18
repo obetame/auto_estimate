@@ -3,16 +3,18 @@ package com.thoughtworks.estimate.configuration;
 import com.thoughtworks.estimate.dto.naming.NamingConfig;
 import com.thoughtworks.estimate.utils.FileUtils;
 import com.thoughtworks.estimate.utils.JsonUtils;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class NamingConfiguration {
 
+  public static final String NAMING_CONFIG_FILENAME = "naming.json";
   private static final NamingConfig NAMING_CONFIG;
-  private static final Double NAMING_TOTAL_SCORE = 10d;
 
   static {
-    NAMING_CONFIG = JsonUtils
-        .read(FileUtils.readFile(CommonConfiguration.SRC_MAIN_RESOURCES_PATH + "naming-config.json"), NamingConfig.class);
+    final String filePath = Paths
+        .get(CommonConfiguration.getSrcMainResourcesPath(), NAMING_CONFIG_FILENAME).toString();
+    NAMING_CONFIG = JsonUtils.read(FileUtils.readFile(filePath), NamingConfig.class);
   }
 
   private NamingConfiguration() {
@@ -34,11 +36,11 @@ public class NamingConfiguration {
     if (getTotalNumber() == 0) {
       return 0d;
     }
-    return NAMING_TOTAL_SCORE / getTotalNumber();
+    return getNamingTotalScore() / getTotalNumber();
   }
 
   public static Double getNamingTotalScore() {
-    return NAMING_TOTAL_SCORE;
+    return NAMING_CONFIG.getNamingTotalScore();
   }
 
   private static Integer getTotalNumber() {

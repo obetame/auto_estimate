@@ -7,7 +7,9 @@ import lombok.Data;
 @Data
 @Builder
 public class NamingConfig {
- private List<String> typeNames;
- private List<String> methodNames;
- private List<String> variableNames;
+
+  private List<String> typeNames;
+  private List<String> methodNames;
+  private List<String> variableNames;
+  private double namingTotalScore;
 }
