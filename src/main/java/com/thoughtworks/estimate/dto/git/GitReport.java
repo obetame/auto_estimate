@@ -16,8 +16,10 @@ public class GitReport implements IReport {
 
   @Override
   public double getScore() {
-    return Math.max(GitConfiguration.getCommitMessageTotalScore() - getCommitMessageDeductScore(), 0) +
-        Math.max(GitConfiguration.getCommitQuantityTotalScore() - getCommitQuantityDeductScore(), 0);
+    return
+        Math.max(GitConfiguration.getCommitMessageTotalScore() - getCommitMessageDeductScore(), 0) +
+            Math.max(
+                GitConfiguration.getCommitQuantityTotalScore() - getCommitQuantityDeductScore(), 0);
   }
 
   @Override

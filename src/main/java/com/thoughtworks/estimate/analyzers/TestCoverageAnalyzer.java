@@ -13,7 +13,8 @@ public class TestCoverageAnalyzer implements IAnalyzer {
 
   @Override
   public TestCoverageReport analysis(GitRepo repo) {
-    final String shellPath = Paths.get(CommonConfiguration.getSrcMainResourcesPath(), "shell/runJacoco.sh")
+    final String shellPath = Paths
+        .get(CommonConfiguration.getSrcMainResourcesPath(), "shell/runJacoco.sh")
         .toAbsolutePath()
         .toString();
     CommandLineUtils.runCommand(String.format("bash %s", shellPath), repo.getFile());

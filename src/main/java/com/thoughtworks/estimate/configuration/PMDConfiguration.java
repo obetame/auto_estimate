@@ -1,39 +1,38 @@
 package com.thoughtworks.estimate.configuration;
 
+import com.thoughtworks.estimate.dto.pmd.PMDConfig;
+import com.thoughtworks.estimate.utils.FileUtils;
+import com.thoughtworks.estimate.utils.JsonUtils;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.Map;
 
 public class PMDConfiguration {
 
-  public static final String XML_PMD_RULESETS_FILE_NAME = "pmd-rulesets.xml";
-  private static final String JSON_REPORT_FILE_NAME = "pmd_report.json";
-  private static final double CODE_SMELL_TOTAL_SCORE = 20;
-  private static final Map<String, Double> CODE_SMELL_PRIORITY_SCORE_MAP = new HashMap<>();
+  private static final String PMD_CONFIG_FILENAME = "pmd.json";
+  private static final PMDConfig PMD_CONFIG;
 
   static {
-    PMDConfiguration.CODE_SMELL_PRIORITY_SCORE_MAP.put("1", 3d);
-    PMDConfiguration.CODE_SMELL_PRIORITY_SCORE_MAP.put("2", 2d);
-    PMDConfiguration.CODE_SMELL_PRIORITY_SCORE_MAP.put("3", 0.5d);
-    PMDConfiguration.CODE_SMELL_PRIORITY_SCORE_MAP.put("4", 0.2d);
-    PMDConfiguration.CODE_SMELL_PRIORITY_SCORE_MAP.put("5", 0.1d);
+    final String filePath = Paths
+        .get(CommonConfiguration.getSrcMainResourcesPath(), PMD_CONFIG_FILENAME).toString();
+    PMD_CONFIG = JsonUtils.read(FileUtils.readFile(filePath), PMDConfig.class);
   }
 
   public static String getPmdRulesetsXmlPath() {
-    return Paths.get(CommonConfiguration.getSrcMainResourcesPath(), XML_PMD_RULESETS_FILE_NAME)
+    return Paths
+        .get(CommonConfiguration.getSrcMainResourcesPath(), PMD_CONFIG.getXmlPmdRulesetsFileName())
         .toString();
   }
 
   public static String getJsonReportFileName() {
-    return JSON_REPORT_FILE_NAME;
+    return PMD_CONFIG.getJsonReportFileName();
   }
 
   public static double getCodeSmellTotalScore() {
-    return CODE_SMELL_TOTAL_SCORE;
+    return PMD_CONFIG.getCodeSmellTotalScore();
   }
 
   public static Map<String, Double> getCodeSmellPriorityScoreMap() {
-    return CODE_SMELL_PRIORITY_SCORE_MAP;
+    return PMD_CONFIG.getCodeSmellPriorityScoreMap();
   }
 
 }

@@ -18,7 +18,8 @@ public class GitRepo {
   private final Git git;
 
   public GitRepo(String gitRepo) {
-    final String path = Paths.get(CommonConfiguration.getWorkDirectory(), UUID.randomUUID().toString())
+    final String path = Paths
+        .get(CommonConfiguration.getWorkDirectory(), UUID.randomUUID().toString())
         .toString();
     this.file = FileUtils.create(path);
     this.git = this.clone(gitRepo, this.file);

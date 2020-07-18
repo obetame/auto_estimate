@@ -27,7 +27,8 @@ public class TestCoverageReport implements IReport {
   @Override
   public List<ViolationItem> getViolationItems() {
     return items.stream()
-        .filter(item -> item.getTestCoverage() < TestCoverageConfiguration.getTestCoverageBaseLine())
+        .filter(
+            item -> item.getTestCoverage() < TestCoverageConfiguration.getTestCoverageBaseLine())
         .map(this::getViolationItem)
         .collect(Collectors.toList());
   }

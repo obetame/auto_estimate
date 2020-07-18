@@ -19,7 +19,8 @@ public class PMDAnalyzer implements IAnalyzer {
 
   public net.sourceforge.pmd.PMDConfiguration getConfig(String path) {
     net.sourceforge.pmd.PMDConfiguration configuration = new net.sourceforge.pmd.PMDConfiguration();
-    configuration.setInputPaths(Paths.get(path, CommonConfiguration.getProjectSourcePath()).toString());
+    configuration
+        .setInputPaths(Paths.get(path, CommonConfiguration.getProjectSourcePath()).toString());
     configuration.setRuleSets(PMDConfiguration.getPmdRulesetsXmlPath());
     configuration.setReportFormat("json");
     configuration.setReportFile(getReportPath(path));
