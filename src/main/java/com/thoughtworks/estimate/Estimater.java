@@ -20,7 +20,7 @@ public class Estimater {
   public IndividualReport estimateByTrainee(Trainee trainee) {
     try {
       final GitRepo repo = new GitRepo(trainee.getRepo());
-      final List<ModuleReport> moduleReports = analyzers.stream()
+      final List<ModuleReport> moduleReports = analyzers.parallelStream()
           .map(iAnalyzer -> iAnalyzer.analysis(repo))
           .map(iReport -> ModuleReport.builder()
               .violationItems(iReport.getViolationItems())

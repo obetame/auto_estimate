@@ -1,33 +1,41 @@
 package com.thoughtworks.estimate.configuration;
 
+import com.thoughtworks.estimate.dto.git.GitConfig;
+import com.thoughtworks.estimate.utils.FileUtils;
+import com.thoughtworks.estimate.utils.JsonUtils;
+import java.nio.file.Paths;
+
 public class GitConfiguration {
 
-  private static final double COMMIT_MESSAGE_MINIMUM_LENGTH = 8;
-  private static final double COMMIT_MESSAGE_LENGTH_DEDUCT_SCORE = 0.5;
-  private static final double COMMIT_MESSAGE_TOTAL_SCORE = 3;
-  private static final double COMMIT_MINIMUM_QUANTITY = 10;
-  private static final double COMMIT_QUANTITY_TOTAL_SCORE = 7;
+  private static final String GIT_CONFIG_FILE_NAME = "git.json";
+  private static final GitConfig GIT_CONFIG;
+
+  static {
+    final String filePath = Paths
+        .get(CommonConfiguration.getSrcMainResourcesPath(), GIT_CONFIG_FILE_NAME).toString();
+    GIT_CONFIG = JsonUtils.read(FileUtils.readFile(filePath), GitConfig.class);
+  }
 
   private GitConfiguration() {
   }
 
   public static double getCommitMessageMinimumLength() {
-    return COMMIT_MESSAGE_MINIMUM_LENGTH;
+    return GIT_CONFIG.getMessageLengthBaseline();
   }
 
   public static double getCommitMessageLengthDeductScore() {
-    return COMMIT_MESSAGE_LENGTH_DEDUCT_SCORE;
+    return GIT_CONFIG.getMessageLengthDeductScore();
   }
 
   public static double getCommitMessageTotalScore() {
-    return COMMIT_MESSAGE_TOTAL_SCORE;
+    return GIT_CONFIG.getMessageTotalScore();
   }
 
   public static double getCommitMinimumQuantity() {
-    return COMMIT_MINIMUM_QUANTITY;
+    return GIT_CONFIG.getMinimumQuantity();
   }
 
   public static double getCommitQuantityTotalScore() {
-    return COMMIT_QUANTITY_TOTAL_SCORE;
+    return GIT_CONFIG.getQuantityTotalScore();
   }
 }
