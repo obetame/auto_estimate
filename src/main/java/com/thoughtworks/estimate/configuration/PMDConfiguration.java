@@ -1,11 +1,12 @@
 package com.thoughtworks.estimate.configuration;
 
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
 public class PMDConfiguration {
 
-  public static final String PMD_RULESETS_XML_PATH = "src/main/resources/pmd-rulesets.xml";
+  public static final String XML_PMD_RULESETS_FILE_NAME = "pmd-rulesets.xml";
   private static final String JSON_REPORT_FILE_NAME = "pmd_report.json";
   private static final double CODE_SMELL_TOTAL_SCORE = 20;
   private static final Map<String, Double> CODE_SMELL_PRIORITY_SCORE_MAP = new HashMap<>();
@@ -19,7 +20,8 @@ public class PMDConfiguration {
   }
 
   public static String getPmdRulesetsXmlPath() {
-    return PMD_RULESETS_XML_PATH;
+    return Paths.get(CommonConfiguration.getSrcMainResourcesPath(), XML_PMD_RULESETS_FILE_NAME)
+        .toString();
   }
 
   public static String getJsonReportFileName() {

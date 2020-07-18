@@ -12,7 +12,7 @@ public class NamingConfiguration {
 
   static {
     NAMING_CONFIG = JsonUtils
-        .read(FileUtils.readFile("src/main/resources/naming-config.json"), NamingConfig.class);
+        .read(FileUtils.readFile(CommonConfiguration.SRC_MAIN_RESOURCES_PATH + "naming-config.json"), NamingConfig.class);
   }
 
   private NamingConfiguration() {
